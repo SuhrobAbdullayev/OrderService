@@ -5,14 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity(name = "my_order")
-@Getter
-@Setter
+@Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +20,5 @@ public class Order {
     private Long id;
     private String name;
     private Double cost;
+
 }

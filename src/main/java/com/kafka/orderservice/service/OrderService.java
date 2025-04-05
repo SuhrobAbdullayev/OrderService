@@ -20,11 +20,12 @@ public class OrderService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void create(OrderRequestDto dto){
-        Order order = new Order();
-        order.setName(dto.name());
-        order.setCost(dto.cost());
+        Order order = Order.builder()
+                .name(dto.name())
+                .cost(dto.cost())
+                .build();
         orderRepository.save(order);
-        String message = "Order created. Name: " + dto.name() + "Cost: " + dto.cost();
+        String message = String.format("Order created. Name: %s, Cost: %.2f", dto.name(), dto.cost());
         kafkaTemplate.send("notification", message);
     }
 
